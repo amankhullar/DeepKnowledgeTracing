@@ -28,6 +28,11 @@ class SkillLSTM(nn.Module):
         # convert python list into tensor
         lengths = torch.Tensor(lengths)
 
+        # Generating mask
+        mask = torch.zeros(x.size(0), x.size(1), x.size(2)//2)
+        for idx in range(mask.size(0)):
+            mask[idx][:int(lengths[idx])] = 1
+
         # save the original padded length for use by pad_packed_sequence
         orig_len = x.size(1)
 
@@ -46,11 +51,6 @@ class SkillLSTM(nn.Module):
 
         # Apply dropout
         x = F.dropout(x, self.drop_prob, self.training)     # (batch_size, ques_len, hidden_size)
-
-        # Generating mask
-        mask = torch.zeros_like(x)
-        for idx in range(mask.size(0)):
-            mask[idx][:lengths[idx]] = 1
 
         # Apply output layer and softmax function
         out_dist = self.out(x)       # (batch_size, ques_len, output_size)
