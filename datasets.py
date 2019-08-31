@@ -40,11 +40,10 @@ class SkillDataset(Dataset):
         return len(self.students_data)
 
     def __getitem__(self, idx):
-        print(self.students_data[idx][0])
         student_ques = torch.zeros(self.max_q, 2*(self.max_skill+1))                  # (Padded tensor : (max_ques,2 * (max_skills+1)) of 0s)
         for ques in range(int(self.students_data[idx][0][0])):
             student_ques[ques][int(self.students_data[idx][1][ques])] = 1         # (one-hot encoding of skills)
             if int(self.students_data[idx][-1][ques]) == 1:
                 student_ques[ques][int(self.students_data[idx][1][ques]) + self.max_skill] = 1          # (correct answer)
-        return student_ques, self.students_data[idx]                    # student_ques : (max_ques, 2*(max_skills+1))
+        return student_ques, torch.tensor([int(self.students_data[idx][0][0]), max(list(map(int, self.students_data[idx][1])))])                    # student_ques : (max_ques, 2*(max_skills+1))
         
