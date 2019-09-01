@@ -1,6 +1,6 @@
 # Deep Knowledge Tracing
 
-This is my PyTorch implementation of the paper, Deep Knowledge Tracing by Chris Pieth et al. 
+This is my PyTorch implementation of the paper, [Deep Knowledge Tracing](http://stanford.edu/~cpiech/bio/papers/deepKnowledgeTracing.pdf) by Chris Pieth et al. The official code for the paper in Lua is available [here](https://github.com/chrispiech/DeepKnowledgeTracing) 
 
 ### Knowledge Tracing
 
@@ -41,3 +41,4 @@ I would love to incorporate any feedback on the implementation.
 
 ### Acknowledgement
 I would like to thank Michael Beeler for introducing me to this exciting area of EdTech and would love to contribute to this field more.
+I also seeked reference from [this](https://github.com/dxywill/deepknowledgetracing) implementation.
