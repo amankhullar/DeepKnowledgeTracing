@@ -10,7 +10,7 @@ def get_train_args():
                         help='Number of steps between successive evaluations')
     parser.add_argument('--lr',
                         type=float,
-                        default=0.01,
+                        default=0.1,
                         help='Learning rate')
     parser.add_argument('--num_epochs',
                         type=int,
@@ -22,7 +22,7 @@ def get_train_args():
                         help='Max gradient norm for gradient clipping')
     parser.add_argument('--batch_size',
                         type=int,
-                        default=100,
+                        default=32,
                         help='mini-batch size for dataset')
     parser.add_argument('--hidden_size',
                         type=int,
@@ -46,8 +46,19 @@ def get_train_args():
                         type=str,
                         default=os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                             'data', 'model_save.pth.tar'),
-                        help='Path for training data')
+                        help='Path for saved checkpoint')
+    parser.add_argument('--save_fig',
+                        type=str,
+                        default=os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                            'data', 'out_heatmap.png'),
+                        help='Path for heatmap')
+    parser.add_argument('--save_loss_plot',
+                        type=str,
+                        default=os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                            'data', 'out_loss.png'),
+                        help='Path for loss plot')
     
     args = parser.parse_args()
 
     return args
+    
